@@ -5,7 +5,6 @@ import { array } from "joi";
 
 describe('Testa POST /items ', () => {
 
-  
   it('Deve retornar 201, se cadastrado um item no formato correto', async ()=>{
       const item = factory.createItem(true);
       const result = await supertest(app).post("/items").send(item);
@@ -25,9 +24,11 @@ describe('Testa GET /items ', () => {
     expect(result.body).toBeInstanceOf(Array);
     expect(result.statusCode).toBe(200);
   });
+  
 });
 
 describe('Testa GET /items/:id ', () => {
+  
   it('Deve retornar status 200 e um objeto igual a o item cadastrado', async () => {
     const item = factory.createItem(true);
     const itemResult = await supertest(app).post("/items").send(item);
@@ -45,4 +46,5 @@ describe('Testa GET /items/:id ', () => {
     const result = await supertest(app).get(`/items/${id}`);
     expect(result.statusCode).toBe(404);
   });
+  
 });
